@@ -5,8 +5,8 @@ import com.afterwork.myweather.model.DataModel
 import com.afterwork.myweather.model.DataModelImpl
 import com.afterwork.myweather.network.WeatherService
 import com.afterwork.myweather.viewmodel.MainViewModel
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

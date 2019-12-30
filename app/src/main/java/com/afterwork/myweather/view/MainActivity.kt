@@ -21,10 +21,10 @@ class MainActivity : BaseKotlinActivity<ActivityMainBinding, MainViewModel>() {
 
     override val layoutResourceId: Int
         get() = R.layout.activity_main
+
     override val viewModel: MainViewModel by viewModel()
 
     private val mainWeatherRecyclerViewAdapter: MainWeatherRecyclerViewAdapter by inject()
-
 
     override fun initStartView() {
         Log.d(TAG, "initStartView()")

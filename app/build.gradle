@@ -26,6 +26,10 @@ android {
     }
 }
 
+ext {
+    koin_version= "2.0.1"
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // kotlin
@@ -43,8 +47,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
 
     // koin
-    implementation "org.koin:koin-androidx-scope:1.0.2"
-    implementation "org.koin:koin-androidx-viewmodel:1.0.2"
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:2.5.0"

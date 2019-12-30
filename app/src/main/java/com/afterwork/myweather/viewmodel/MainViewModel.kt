@@ -12,11 +12,13 @@ import io.reactivex.schedulers.Schedulers
 
 class MainViewModel (private val model: DataModel) : BaseKotlinViewModel() {
 
-    private val TAG = "MainViewModel"
+    companion object {
+        val TAG = "MainViewModel"
+    }
 
-    private val _locationListResponseLiveData = MutableLiveData<List<LocationResponse>>()
-    val locationListResponseLiveData:LiveData<List<LocationResponse>>
-        get() = _locationListResponseLiveData
+//    private val _locationListResponseLiveData = MutableLiveData<List<LocationResponse>>()
+//    val locationListResponseLiveData:LiveData<List<LocationResponse>>
+//        get() = _locationListResponseLiveData
 
     private val _locationWeatherResponseLiveData = MutableLiveData<LocationWeatherResponse>()
     val locationWeatherResponseLiveData:LiveData<LocationWeatherResponse>
@@ -29,11 +31,10 @@ class MainViewModel (private val model: DataModel) : BaseKotlinViewModel() {
             .subscribe( {
                 it.run {
                     Log.d(TAG, "getLocationList size: ${it.size}")
-                    _locationListResponseLiveData.postValue(this)
+//                    _locationListResponseLiveData.postValue(this)
                     for(lo in it){
                         getLocationWeather(lo.woeid)
                     }
-
                 }
             }, {
                 Log.d(TAG, "getLocationList error, message : ${it.message}")

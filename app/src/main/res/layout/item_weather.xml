@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -14,9 +15,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:onClick="@{() -> vmMain.onItemClick(weatherItem)}">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -73,7 +74,7 @@
                     android:layout_below="@+id/tv_today_weather"
                     android:layout_toRightOf="@+id/iv_today_weather"
                     android:layout_marginTop="5dp"
-                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[0].the_temp)}"
+                    app:setTemp="@{weatherItem.consolidated_weather[0].the_temp}"
                     android:textColor="@color/colorDarkRed"
                     android:textSize="10dp" />
                 <TextView
@@ -96,7 +97,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="@{vmMain.changeHumidityString(weatherItem.consolidated_weather[0].humidity)}"
+                    app:setHumidity="@{weatherItem.consolidated_weather[0].humidity}"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="10dp" />
             </RelativeLayout>
@@ -135,7 +136,7 @@
                     android:layout_below="@+id/tv_tomor_weather"
                     android:layout_toRightOf="@+id/iv_tomor_weather"
                     android:layout_marginTop="5dp"
-                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[1].the_temp)}"
+                    app:setTemp="@{weatherItem.consolidated_weather[1].the_temp}"
                     android:textColor="@color/colorDarkRed"
                     android:textSize="10dp" />
                 <TextView
@@ -158,7 +159,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[1].humidity)}"
+                    app:setHumidity="@{weatherItem.consolidated_weather[1].humidity}"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="10dp" />
             </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.afterwork.myweather.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.afterwork.myweather.base.BaseKotlinViewModel
 import com.afterwork.myweather.model.DataModel
 import com.afterwork.myweather.network.response.LocationWeather
@@ -32,6 +33,10 @@ class WeatherViewModel (private val model: DataModel) : BaseKotlinViewModel() {
     val _postMsg: NotNullMutableLiveData<String> = NotNullMutableLiveData("WeatherViewModel Injected.")
     val postMsg: NotNullMutableLiveData<String>
         get() = _postMsg
+
+    val _newActivity: MutableLiveData<LocationWeather> = MutableLiveData()
+    val newActivity: MutableLiveData<LocationWeather>
+        get() = _newActivity
 
     fun getLocationWeather(woeid: Int){
         addDisposable(model.getLocationWeather(woeid)
@@ -87,21 +92,18 @@ class WeatherViewModel (private val model: DataModel) : BaseKotlinViewModel() {
             ))
     }
 
+    fun onItemClick(weather: LocationWeather){
+        postMsg.postValue("onItemClick(${weather.title})")
+        newActivity.postValue(weather)
+    }
+
     fun startProgress(){
         visibility.value = false
         refreshing.value = true
     }
+    
     fun stopProgress(){
         visibility.value = true
         refreshing.value = false
     }
-
-    fun changeTempString(temp: Double): String {
-        return "${temp.toInt()}°C"
-    }
-
-    fun changeHumidityString(humidity: Int): String {
-        return "${humidity}%"
-    }
-
 }

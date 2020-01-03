@@ -1,14 +1,68 @@
 package com.afterwork.myweather.network.response
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 
-data class LocationWeather (@SerializedName("consolidated_weather") val consolidated_weather: ArrayList<Weather>,
-                            @SerializedName("title") val title: String){
+data class LocationWeather (@SerializedName("title") val title: String,
+                            @SerializedName("consolidated_weather") val consolidated_weather: ArrayList<Weather>): Parcelable {
+
+    constructor(parcelIn: Parcel): this(
+        parcelIn.readString()!!,
+        arrayListOf<Weather>().apply {
+            parcelIn.readTypedList(this, Weather.CREATOR)
+        }
+    )
+
+    override fun writeToParcel(parcelOut: Parcel, flags: Int) {
+        parcelOut.writeString(title)
+        parcelOut.writeTypedList(consolidated_weather)
+    }
+
+    override fun describeContents() = 0
+
+    companion object CREATOR : Parcelable.Creator<LocationWeather> {
+        override fun createFromParcel(parcel: Parcel): LocationWeather {
+            return LocationWeather(parcel)
+        }
+
+        override fun newArray(size: Int): Array<LocationWeather?> {
+            return arrayOfNulls(size)
+        }
+    }
+
     data class Weather(@SerializedName("weather_state_name") val weather_state_name: String,
                        @SerializedName("weather_state_abbr") val weather_state_abbr: String,
                        @SerializedName("the_temp") val the_temp: Double,
-                       @SerializedName("humidity") val humidity: Int)
+                       @SerializedName("humidity") val humidity: Int): Parcelable {
+
+        protected constructor(parcelIn: Parcel) : this(
+            parcelIn.readString()!!,
+            parcelIn.readString()!!,
+            parcelIn.readDouble(),
+            parcelIn.readInt()
+        )
+
+        override fun writeToParcel(dest: Parcel, flags: Int) {
+            dest.writeString(weather_state_name)
+            dest.writeString(weather_state_abbr)
+            dest.writeDouble(the_temp)
+            dest.writeInt(humidity)
+        }
+
+        override fun describeContents() = 0
+
+        companion object CREATOR : Parcelable.Creator<Weather> {
+            override fun createFromParcel(parcel: Parcel): Weather {
+                return Weather(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Weather?> {
+                return arrayOfNulls(size)
+            }
+        }
+    }
 }
 
 /*

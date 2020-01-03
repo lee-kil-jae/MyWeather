@@ -3,6 +3,7 @@ package com.afterwork.myweather.di
 import com.afterwork.myweather.model.DataModel
 import com.afterwork.myweather.model.DataModelImpl
 import com.afterwork.myweather.network.WeatherService
+import com.afterwork.myweather.viewmodel.SubViewModel
 import com.afterwork.myweather.viewmodel.WeatherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,6 +20,10 @@ var modelPart = module {
 var viewModelPart = module {
     viewModel {
         WeatherViewModel(get())
+    }
+
+    viewModel {
+        SubViewModel(get())
     }
 }
 

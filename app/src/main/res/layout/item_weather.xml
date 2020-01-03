@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="weatherItem"
+            type="com.afterwork.myweather.network.response.LocationWeather" />
+        <variable
+            name="vmMain"
+            type="com.afterwork.myweather.viewmodel.WeatherViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_margin="0dp"
+            android:weightSum="10">
+            <View
+                android:layout_width="1dp"
+                android:layout_height="100dp"
+                android:background="@color/colorDarkGray"
+                android:layout_alignParentLeft="true"/>
+            <TextView
+                android:id="@+id/tv_local"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:padding="2dp"
+                android:textSize="12dp"
+                android:text="@{weatherItem.title}"
+                android:textColor="@color/colorDarkGray"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="100dp"
+                android:background="@color/colorDarkGray"
+                android:layout_alignParentLeft="true"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="4">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iv_today_weather"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_vertical"
+                    fresco:placeholderImage="@drawable/ic_loading_weather"
+                    app:setWeatherIconView="@{weatherItem.consolidated_weather[0].weather_state_abbr}"/>
+                <TextView
+                    android:id="@+id/tv_today_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_today_weather"
+                    android:layout_marginTop="30dp"
+                    android:text="@{weatherItem.consolidated_weather[0].weather_state_name}"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_today_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_today_weather"
+                    android:layout_toRightOf="@+id/iv_today_weather"
+                    android:layout_marginTop="5dp"
+                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[0].the_temp)}"
+                    android:textColor="@color/colorDarkRed"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_today_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_today_weather"
+                    android:layout_toRightOf="@+id/tv_today_temp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="/"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_today_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_today_weather"
+                    android:layout_toRightOf="@+id/tv_today_dummy"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@{vmMain.changeHumidityString(weatherItem.consolidated_weather[0].humidity)}"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="100dp"
+                android:background="@color/colorDarkGray"
+                android:layout_alignParentLeft="true"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="4">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iv_tomor_weather"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_vertical"
+                    fresco:placeholderImage="@drawable/ic_loading_weather"
+                    app:setWeatherIconView="@{weatherItem.consolidated_weather[1].weather_state_abbr}"/>
+                <TextView
+                    android:id="@+id/tv_tomor_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_tomor_weather"
+                    android:layout_marginTop="30dp"
+                    app:text="@{weatherItem.consolidated_weather[1].weather_state_name"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_tomor_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_tomor_weather"
+                    android:layout_toRightOf="@+id/iv_tomor_weather"
+                    android:layout_marginTop="5dp"
+                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[1].the_temp)}"
+                    android:textColor="@color/colorDarkRed"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_tomor_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_tomor_weather"
+                    android:layout_toRightOf="@+id/tv_tomor_temp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="/"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/tv_tomor_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tv_tomor_weather"
+                    android:layout_toRightOf="@+id/tv_tomor_dummy"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@{vmMain.changeTempString(weatherItem.consolidated_weather[1].humidity)}"
+                    android:textColor="@color/colorDarkGray"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="100dp"
+                android:background="@color/colorDarkGray"
+                android:layout_alignParentRight="true"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/colorDarkGray"/>
+
+    </RelativeLayout>
+</layout>

@@ -14,9 +14,9 @@ import androidx.databinding.ViewDataBinding
  * 3. 이름 확인 sbs_main_activity -> ActivitySbsMainBinding
  */
 
-abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> : AppCompatActivity() {
+abstract class BaseKotlinActivity<T : ViewDataBinding> : AppCompatActivity() {
 
-    lateinit var veiwDataBinding: T
+    lateinit var viewDataBinding: T
 
     /**
      * setContentView를 호출할 layout 리소스 ID.
@@ -24,43 +24,9 @@ abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseKotlinViewModel> 
      */
     abstract val layoutResourceId: Int
 
-    /**
-     * ViewModel에 쓰일 변수
-     */
-    abstract val viewModel: R
-
-    /**
-     * layout을 띄운 직후 호출
-     * 뷰나 액티비티의 속성등을 초기화
-     * Ex). 리사이클러뷰, 툴바, 드로어뷰, ...
-     */
-    abstract fun initStartView()
-
-    /**
-     * 두번째로 호출
-     * 데이터 바인딩 및 RxJava 설정
-     * Ex). Rajava, Observe, DataBinding Observe, ...
-     */
-    abstract fun initDataBinding()
-
-
-    /**
-     * 바인딩 이후에 할일을 여기에 구현
-     * 그 외에 설정할 것이 있으면 이곳에서 설정
-     * Click Listener도 이곳에서 설
-     */
-    abstract fun initAfterBinding()
-
-    private var isSetBackButtonValid = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        veiwDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
-
-        initStartView()
-        initDataBinding()
-        initAfterBinding()
+        viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
     }
 
 }

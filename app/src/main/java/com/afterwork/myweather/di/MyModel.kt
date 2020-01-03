@@ -1,10 +1,9 @@
 package com.afterwork.myweather.di
 
-import com.afterwork.myweather.MainWeatherRecyclerViewAdapter
 import com.afterwork.myweather.model.DataModel
 import com.afterwork.myweather.model.DataModelImpl
 import com.afterwork.myweather.network.WeatherService
-import com.afterwork.myweather.viewmodel.MainViewModel
+import com.afterwork.myweather.viewmodel.WeatherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -19,7 +18,7 @@ var modelPart = module {
 
 var viewModelPart = module {
     viewModel {
-        MainViewModel(get())
+        WeatherViewModel(get())
     }
 }
 
@@ -36,15 +35,8 @@ var retrofitPart = module {
     }
 }
 
-var adapterPart = module {
-    factory {
-        MainWeatherRecyclerViewAdapter()
-    }
-}
-
 var myDiModule = listOf(
     retrofitPart,
-    adapterPart,
     modelPart,
     viewModelPart
 )

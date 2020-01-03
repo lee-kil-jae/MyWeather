@@ -1,7 +1,7 @@
 package com.afterwork.myweather.network.response
 
 
-data class LocationResponse(var woeid: Int)
+data class Location(var woeid: Int)
 
 /*
 {

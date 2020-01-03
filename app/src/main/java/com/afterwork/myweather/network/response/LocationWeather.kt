@@ -1,12 +1,14 @@
 package com.afterwork.myweather.network.response
 
+import com.google.gson.annotations.SerializedName
 
-data class LocationWeatherResponse (var consolidated_weather: ArrayList<Weather>,
-                               var title: String){
-    data class Weather(var weather_state_name: String,
-                            var weather_state_abbr: String,
-                            var the_temp: Double,
-                            var humidity: Int)
+
+data class LocationWeather (@SerializedName("consolidated_weather") val consolidated_weather: ArrayList<Weather>,
+                            @SerializedName("title") val title: String){
+    data class Weather(@SerializedName("weather_state_name") val weather_state_name: String,
+                       @SerializedName("weather_state_abbr") val weather_state_abbr: String,
+                       @SerializedName("the_temp") val the_temp: Double,
+                       @SerializedName("humidity") val humidity: Int)
 }
 
 /*

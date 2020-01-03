@@ -4,35 +4,16 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:layout_below="@+id/et_search">
 
-    <EditText
-        android:id="@+id/et_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_toStartOf="@+id/bt_search"
-        android:layout_toLeftOf="@+id/bt_search"
-        android:ems="10"
-        android:hint="@string/hint_search"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:singleLine="true"/>
-    <Button
-        android:id="@+id/bt_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="@string/search"/>
     <ProgressBar
         android:id="@+id/pb_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:layout_below="@+id/et_search"/>
+        android:visibility="gone"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

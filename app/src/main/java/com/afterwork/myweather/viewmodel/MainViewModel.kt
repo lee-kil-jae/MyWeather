@@ -16,10 +16,6 @@ class MainViewModel (private val model: DataModel) : BaseKotlinViewModel() {
         val TAG = "MainViewModel"
     }
 
-//    private val _locationListResponseLiveData = MutableLiveData<List<LocationResponse>>()
-//    val locationListResponseLiveData:LiveData<List<LocationResponse>>
-//        get() = _locationListResponseLiveData
-
     private val _locationWeatherResponseLiveData = MutableLiveData<LocationWeatherResponse>()
     val locationWeatherResponseLiveData:LiveData<LocationWeatherResponse>
         get() = _locationWeatherResponseLiveData

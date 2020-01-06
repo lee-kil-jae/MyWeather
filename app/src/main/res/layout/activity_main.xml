@@ -41,7 +41,6 @@
                 android:layout_marginTop="10dp"
                 android:singleLine="true"
                 android:text="@={vmMain.keyword}"/>
-<!--                android:onTextChanged="@{(text, start, before, count) -> vmMain.onQueryChange(text)}"/>-->
             <Button
                 android:id="@+id/bt_search"
                 android:layout_width="wrap_content"

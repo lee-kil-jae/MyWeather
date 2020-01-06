@@ -23,10 +23,10 @@ class SubActivity: BaseKotlinActivity<ActivitySubBinding>() {
         super.onCreate(savedInstanceState)
 
         viewDataBinding.vmSub = getViewModel()
-        viewDataBinding.setLifecycleOwner(this)
+        viewDataBinding.lifecycleOwner = this
 
         if(intent.hasExtra(KEY_WEATHER)){
-            viewDataBinding.getVmSub()?.weather?.value = intent.getParcelableExtra<LocationWeather>(KEY_WEATHER)
+            viewDataBinding.vmSub?.weather?.value = intent.getParcelableExtra<LocationWeather>(KEY_WEATHER)
         }
     }
 

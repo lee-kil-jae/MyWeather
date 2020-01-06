@@ -74,7 +74,7 @@
                     android:layout_below="@+id/tv_today_weather"
                     android:layout_toRightOf="@+id/iv_today_weather"
                     android:layout_marginTop="5dp"
-                    app:setTemp="@{weatherItem.consolidated_weather[0].the_temp}"
+                    android:text="@{weatherItem.consolidated_weather[0].the_temp}"
                     android:textColor="@color/colorDarkRed"
                     android:textSize="10dp" />
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_below="@+id/tv_tomor_weather"
                     android:layout_toRightOf="@+id/iv_tomor_weather"
                     android:layout_marginTop="5dp"
-                    app:setTemp="@{weatherItem.consolidated_weather[1].the_temp}"
+                    android:text="@{weatherItem.consolidated_weather[1].the_temp}"
                     android:textColor="@color/colorDarkRed"
                     android:textSize="10dp" />
                 <TextView

@@ -19,12 +19,12 @@ class WeatherActivity : BaseKotlinActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 
         viewDataBinding.vmMain = getViewModel()
-        viewDataBinding.setLifecycleOwner(this)
-        viewDataBinding.getVmMain()?.postMsg?.observe(this, Observer<String> {
+        viewDataBinding.lifecycleOwner = this
+        viewDataBinding.vmMain?.postMsg?.observe(this, Observer<String> {
             Toast.makeText(this@WeatherActivity, it, Toast.LENGTH_SHORT).show()
         })
 
-        viewDataBinding.getVmMain()?.newActivity?.observe(this, Observer<LocationWeather> {
+        viewDataBinding.vmMain?.newActivity?.observe(this, Observer<LocationWeather> {
             val intent = Intent(this@WeatherActivity, SubActivity::class.java)
             intent.putExtra(SubActivity.KEY_WEATHER, it)
             startActivity(intent)

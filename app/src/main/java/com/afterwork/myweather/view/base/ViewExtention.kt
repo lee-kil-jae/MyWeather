@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 @BindingAdapter("refreshing")
@@ -18,10 +19,15 @@ fun setVisibility(_view: View, _visible: Boolean) {
     _view.visibility = if(_visible) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter("setTemp")
-fun setTemp(_view: TextView, temp: Double) {
-    Log.d("ViewExtention", "ViewExtention - setTemp : $temp")
-    _view.text = "${temp.toInt()}°C"
+//@BindingAdapter("setTemp")
+//fun setTemp(_view: TextView, temp: Double) {
+//    Log.d("ViewExtention", "ViewExtention - setTemp : $temp")
+//    _view.text = "${temp.toInt()}°C"
+//}
+
+@BindingConversion
+fun convertTempToTempString(temp: Double): String {
+    return "${temp.toInt()}°C"
 }
 
 @BindingAdapter("setHumidity")
